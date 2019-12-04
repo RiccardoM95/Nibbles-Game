@@ -1,26 +1,53 @@
-import java.awt.Color;
+import java.io.File;
 
 public class Food {
 	
 	private Coordinate position;
-	private Color color;
+	private File imageFile;
+	private File imageFileBonus;
 	
+	/**
+	 * Class Constructor
+	 */
 	protected Food() {
-		color = Color.RED;
+		imageFile = new File("strawberry.png");
+		imageFileBonus = new File("cake.png");
 	}
 	
-	public Color getColor() {
-		return color;
+	/**
+	 * Getter for the image file
+	 * @return
+	 */
+	public File getImageFile(boolean bonus) {
+		if(bonus)
+			return imageFileBonus;
+		else
+			return imageFile;
 	}
 	
+	/**
+	 * Sets the position of the food package
+	 * @param x
+	 * @param y
+	 */
 	protected void setPosition(int x, int y) {
 		position = new Coordinate(x,y);
 	}
 	
+	/**
+	 * Getter of the food position
+	 * @return
+	 */
 	public Coordinate getPosition() {
 		return position;
 	}
 	
+	/**
+	 * Checks if there is food in the given position
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	protected boolean isFood(int x, int y) {
 		if(position.getX()==x && position.getY()==y) {
 			return true;

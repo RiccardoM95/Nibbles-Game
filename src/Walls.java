@@ -3,42 +3,58 @@ import java.util.ArrayList;
 
 public class Walls extends BoardObjects {
 	
-	private final boolean[][] wallMatrix;
-	
-	protected Walls(int rows, int cols) {
+	/**
+	 * Class Constructor
+	 */
+	protected Walls() {
 		setColor(new Color(210,210,210));
-		wallMatrix = new boolean[rows][cols];
 	}
 	
+	/**
+	 * Sets walls position
+	 */
 	protected void setPosition(ArrayList<Coordinate> position) {
 		if(this.position != null)
 			this.position.addAll(position);
 		else
 			this.position = position;
-		
-		buildWalls();
 	}
 	
+	/**
+	 * Getter for the walls position
+	 */
 	public ArrayList<Coordinate> getPosition(){
 		return position;
 	}
 	
+	/**
+	 * Sets the walls color
+	 */
 	protected void setColor(Color color) {
 		this.color = color;
 	}
 	
+	/**
+	 * Getter for the walls color
+	 */
 	public Color getColor() {
 		return color;
 	}
 	
-	private void buildWalls() {
-		for(int i=0; i<position.size(); i++) {
-			wallMatrix[position.get(i).getY()][position.get(i).getX()] = true;
-		}
-	}
-	
+	/**
+	 * Checks if the given slot is occupied by a wall element
+	 * @param x
+	 * @param y
+	 */
 	protected boolean isWall(int x, int y) {
-		return wallMatrix[y][x];
+		if (position != null) {
+			for(int i=0; i<position.size(); i++) {
+				if(position.get(i).getX()==x && position.get(i).getY()==y)
+					return true;
+			}
+		}
+		
+		return false;
 	}
 
 }
